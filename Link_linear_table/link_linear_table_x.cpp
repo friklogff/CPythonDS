@@ -9,6 +9,13 @@ typedef struct LNode {
 	struct LNode *next;
 } LNode, *LinkList;
 
+//struct LNode {
+//	ElemType data;
+//	struct LNode *next;
+//};
+//typedef struct LNode LNode;
+//typedef struct LNode *LinkList;
+
 // 初始化一个空的单链表
 bool InitList(LinkList &L) {
 	L = NULL;
