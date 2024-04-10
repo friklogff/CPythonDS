@@ -105,6 +105,49 @@ void DestroyListWithHead(LinkList &L) {
 	printf("销毁带头节点的单链表\n");
 }
 
+// 根据位置获取单链表中的指定节点
+LNode *GetElemWithHead(LinkList L, int i) {
+	int j = 1;
+	LNode *p = L->next;
+
+	if (i == 0)
+		return L;
+	if (i < 1)
+		return NULL;
+
+	while (p != NULL && j < i) {
+		p = p->next;
+		j++;
+	}
+
+	return p;
+}
+
+// 在带头结点的单链表中第i个位置插入元素e
+bool ListInsertWithHead(LinkList &L, int i, ElemType e) {
+	LNode *p = L;
+	int j = 0;
+
+	if (i < 1)
+		return false;
+
+	// 找到第i-1个节点
+	while (p != NULL && j < i - 1) {
+		p = p->next;
+		j++;
+	}
+
+	if (p == NULL) // i值不合法
+		return false;
+
+	LNode *s = (LNode *)malloc(sizeof(LNode));
+	s->data = e;
+	s->next = p->next;
+	p->next = s;
+
+	return true; // 插入成功
+}
+
 int main() {
 	LinkList L;
 	InitListWithHead(L);
@@ -132,7 +175,22 @@ int main() {
 	PrintListWithHead(L);
 	printf("打印带头节点的单链表元素\n");
 	printf("\n");
+	// 获取第2个节点的指针
+	LNode *node = GetElemWithHead(L, 2);
+	if (node != NULL) {
+		printf("The data in the 2nd node is: %d\n", node->data);
+	} else {
+		printf("Node not found.\n");
+	}
 
+	// 在第3个位置插入元素 25
+	if (ListInsertWithHead(L, 1, 25)) {
+		printf("Inserted 25 at position 3\n");
+	} else {
+		printf("Failed to insert at position 3\n");
+	}
+
+	PrintListWithHead(L);
 	DestroyListWithHead(L);
 
 	return 0;

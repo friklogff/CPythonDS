@@ -110,6 +110,55 @@ void DestroyList(LinkList &L) {
 	printf("销毁链表\n");
 }
 
+// 根据位置获取单链表中的指定节点
+LNode *GetElem(LinkList L, int i) {
+	int j = 1;
+	LNode *p = L;
+
+	if (i == 0)
+		return L;
+	if (i < 1)
+		return NULL;
+
+	while (p != NULL && j < i) {
+		p = p->next;
+		j++;
+	}
+
+	return p;
+}
+
+// 在不带头结点的单链表中第i个位置插入元素e
+bool ListInsert(LinkList &L, int i, ElemType e) {
+	if (i < 1)
+		return false;
+	if (i == 1) { // 插入第1个结点的操作与其他结点操作不同
+		LNode *s = (LNode *)malloc(sizeof(LNode));
+		s->data = e;
+		s->next = L;
+		L = s; // 头指针指向新结点
+		return true;
+	}
+	int j = 1;
+	LNode *p = L;
+
+	// 找到第i-1个节点
+	while (p != NULL && j < i - 1) {
+		p = p->next;
+		j++;
+	}
+
+	if (p == NULL) // i值不合法
+		return false;
+
+	LNode *s = (LNode *)malloc(sizeof(LNode));
+	s->data = e;
+	s->next = p->next;
+	p->next = s;
+
+	return true; // 插入成功
+}
+
 int main() {
 	LinkList L;
 	InitList(L);
@@ -143,7 +192,22 @@ int main() {
 	// 打印链表元素：15 5 10 30
 	PrintList(L);
 	printf("\n");
+	// 获取第2个节点的指针
+	LNode *node = GetElem(L, 2);
+	if (node != NULL) {
+		printf("The data in the 2nd node is: %d\n", node->data);
+	} else {
+		printf("Node not found.\n");
+	}
 
+	// 在第3个位置插入元素 25
+	if (ListInsert(L, 3, 25)) {
+		printf("Inserted 25 at position 3\n");
+	} else {
+		printf("Failed to insert at position 3\n");
+	}
+
+	PrintList(L);
 	// 销毁链表
 	DestroyList(L);
 
