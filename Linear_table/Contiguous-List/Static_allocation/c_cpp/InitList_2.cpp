@@ -1,4 +1,4 @@
-#include <stdio.h>
+m 23#include <stdio.h>
 
 #define MaxSize 10 // 定义最大长度
 
