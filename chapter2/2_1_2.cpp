@@ -1,3 +1,4 @@
+//02．设计一个高效算法，将顺序表L的所有元素逆置，要求算法的空间复杂度为O(1)。
 #include <stdio.h>
 #include <stdbool.h>
 
@@ -26,6 +27,18 @@ void initializeList(SqList &list) {
 }
 
 /**
+ * 打印顺序表
+ * @param list 顺序表
+ */
+void printList(const SqList &list) {
+	// 输出顺序表中的每个元素
+	for (int i = 0; i < list.length; i++) {
+		printf("%d ", list.data[i]);
+	}
+	printf("\n");
+}
+
+/**
  * 反转顺序表
  * @param list 顺序表
  */
@@ -38,17 +51,6 @@ void reverseList(SqList &list) {
 	}
 }
 
-/**
- * 打印顺序表
- * @param list 顺序表
- */
-void printList(const SqList &list) {
-	// 输出顺序表中的每个元素
-	for (int i = 0; i < list.length; i++) {
-		printf("%d ", list.data[i]);
-	}
-	printf("\n");
-}
 
 int main() {
 	SqList list; // 定义一个顺序表

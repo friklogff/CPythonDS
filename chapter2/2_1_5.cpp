@@ -1,3 +1,4 @@
+//05．从有序顺序表中删除所有其值重复的元素，使表中所有元素的值均不同。
 #include <stdio.h>
 #include <stdbool.h>
 

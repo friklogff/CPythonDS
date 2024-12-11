@@ -1,3 +1,5 @@
+//04．从顺序表中删除其值在给定值s和t之间(包含s和t，要求s<t)的所有元素，若s或t不合理或顺序表为空，则显示出错信息并退出运行。
+
 #include <stdio.h>
 
 #define MaxSize 50 // 定义顺序表的最大长度
@@ -66,7 +68,7 @@ int main() {
 	printf("\n");
 
 	// 尝试删除值在区间 [10, 20] 之间的元素
-	if (!deleteElementsInRange(list, 10, 20))
+	if (!deleteElementsInRange(list, 1, 5))
 		printf("错误: 无符合条件的元素被删除\n");
 
 	// 打印删除操作后的顺序表
